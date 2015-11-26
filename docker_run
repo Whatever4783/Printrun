@@ -1,0 +1,15 @@
+#! /bin/bash
+
+script_rel=`dirname $0`
+printrun_dir=$(cd $script_rel && pwd)
+
+echo "Mounting Printrun directory ($printrun_dir) as /Printrun"
+
+docker run -ti --rm --privileged \
+    -e DISPLAY=$DISPLAY --net=host \
+    -v /dev:/dev \
+    -v $printrun_dir:/Printrun \
+    -v /root:/root \
+    -v /home:/home \
+    -v ${printrun_dir}/my_dot_pronsolerc:${HOME}/.pronsolerc \
+    printrun $*

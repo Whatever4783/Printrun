@@ -1,0 +1,101 @@
+set port /dev/ttyACM0
+set baudrate 250000
+set last_window_maximized False
+set last_window_width 1139
+set last_window_height 647
+set z_feedrate 120
+set build_dimensions 200.00x185.00x150.00+0.00+0.00+0.00+0.00+0.00+0.00
+set extruders 1
+set clamp_jogging True
+set monitor True
+set xy_feedrate 3000
+set e_feedrate 30
+set last_temperature 185.0
+set last_bed_temperature 115.0
+set last_extrusion 3
+macro abort
+  M117 Aborting print
+  M25
+  G91
+  G0 F60 Z10
+  G90
+  G28 X Y
+  G0 X200 F3000
+  M117 Ready
+macro backleft
+  G90
+  G0 F60 Z2
+  G0 F3000 X190 Y0
+  G28 Z
+macro frontleft
+  G90
+  G0 F60 Z2
+  G0 F3000 X190 Y180
+  G28 Z
+macro frontright
+  G90
+  G0 F60 Z2
+  G0 F3000 X10 Y180
+  G28 Z
+macro park
+  G28
+  G90
+  G0 F60 Z10
+macro parkhigh
+  G28
+  G90
+  G0 F60 Z100
+  G0 F3000 X100 Y100
+macro center
+  G90
+  G0 F60 Z2
+  G0 F3000 X100 Y100
+  G28 Z
+set bedtemp_abs 120
+set temperature_abs 215
+set mainviz 2D
+set tempgraph True
+set tempgauges False
+set temperature_pla 185
+button 11 "H / L" /c "black" homeLevel
+macro homeLevel
+  G28
+  G29
+  G0 X200 Y0 F6000
+macro warmup
+  M140 S125
+  G28 X Y
+  G0 X200 F3000
+macro backLevel
+  G90
+  G28 X0 Y0
+  G0 Z15 F60
+  G0 X5 Y20 F9000
+  M400
+  G30
+  G0 Z15 F60
+  G0 X150 Y20 F9000
+  M400
+  G30
+  M84
+macro level
+  G90
+  G28
+  G0 Z15 F60
+  G0 X1 Y10 F9000
+  G30
+  G0 Z15 F60
+  G0 X160 Y10 F9000
+  G30
+  G0 Z15 F60
+  G0 X160 Y165 F9000
+  G30
+  G0 Z15 F60
+  G0 X1 Y165 F9000
+  G30
+  M84
+set last_file_path /home/jstrunk/gcode
+set recentfiles ["/home/jstrunk/gcode/antenna_spacer.gcode", "/home/jstrunk/gcode/antenna_whisker.gcode", "/home/jstrunk/gcode/OutdoorBoxTop.gcode", "/home/jstrunk/gcode/OutdoorBoxBottom.gcode", "/home/jstrunk/gcode/#4-FirstCompressor.gcode"]
+set last_sash_position 304
+button 1 "warmup" /c "blue" warmup
+button 0 "H / L" /c "black" homeLevel
