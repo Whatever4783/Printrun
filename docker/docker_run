@@ -1,7 +1,7 @@
 #! /bin/bash
 
 script_rel=`dirname $0`
-printrun_dir=$(cd $script_rel && pwd)
+printrun_dir=$(cd $script_rel/.. && pwd)
 
 echo "Mounting Printrun directory ($printrun_dir) as /Printrun"
 
