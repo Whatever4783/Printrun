@@ -11,5 +11,5 @@ docker run -ti --rm --privileged \
     -v $printrun_dir:/Printrun \
     -v /root:/root \
     -v /home:/home \
-    -v ${printrun_dir}/my_dot_pronsolerc:${HOME}/.pronsolerc \
+    -v ${printrun_dir}/docker/my_dot_pronsolerc:${HOME}/.pronsolerc \
     printrun $*
